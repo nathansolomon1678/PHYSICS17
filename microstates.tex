@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+
+\begin{document}
+
+\title{Microstates}
+\author{Nathan Solomon}
+\maketitle
+
+\section{Macrostates vs. microstates}
+Suppose you have $N$ particles which each have a nonnegative integer amount of energy, and the total energy of those particles is $E$, where $E \geq N$. In this example, suppose $N=6$ and $E=8$. Each way of distributing the energy between $N$ unordered particles is a macrostate, and each way of distributing the energy between $N$ ordered particles is a microstate. Counting microstates is useful because every microstate is equally likely, so we can figure out the probability a that particle will be at a given energy level. In this example, there are 20 macrostates and 1287 microstates.
+
+Each microstate can be represented by a "stars-and-bars" diagram, where each star is a unit of energy. For example, if one particles has 4 energy, 2 particles have 2 energy, and the rest have zero energy, the diagram could look like
+\[\star \star \star \star | \star \star | \star \star | | |\]
+But by convention, each partition in a stars-and-bars diagram must have at least one star, so we add one star to each partition by default, and instead write
+\[\star \star \star \star \star | \star \star \star | \star \star \star | \star | \star | \star\]
+This diagram has the same distribution of energies, but in a different order, meaning it represents the same macrostate, but a different microstate.
+\[\star \star \star | \star \star \star \star \star | \star \star \star | \star | \star | \star\]
+That microstate can be permuted $\frac{6!}{2!3!} = 60$ different ways, meaning that that macrostate contains 60 microstates.
+
+\section{Nasty combinatorics stuff}
+
+\[\Omega(E, N) := \text{\# of microstates} = \sum_{\text{macrostates with N particles \& energy E}} (\text{\# of permutations of that macrostate})\]
+
+Going back to the first diagram (the one where some partitions have no stars), we have a total of $N+E-1$ characters: $E$ stars and $N-1$ bars. So the number of ways to arrange those characters is
+\[\Omega(E, N) = {{N+E-1} \choose E} = {{N+E-1} \choose {N-1}} = \frac{(N+E-1)!}{E!(N-1)!} \]
+
+In the example where $E=8$ and $N=6$, that tells us that there are $\Omega(8, 6) = 1287$ microstates.
+
+\section{Deriving the discrete probability distribution}
+
+Define the function
+\begin{align*}
+    f(e, E, N) :&= \sum_{\text{microstates with N particles \& total energy E}} (\text{\# of particles with energy }e) \\
+    &= \sum_{n=1}^{\lfloor E / e \rfloor} n \cdot (\text{\# of microstates where exactly n particles have energy e})
+\end{align*}
+
+Since each microstate has $N$ particles, we know that
+\[\sum_{e=0}^E f(e, E, N) = N \cdot \Omega(E, N)\]
+
+We also know that
+\[f(E, E, N) = N\]
+and that
+
+???
+
+\[f(e, E, N) = N {{E + N - e - 2} \choose {N - 2}} = N {{E + N - e - 2} \choose {E - e}}\]
+
+I HAVE ABSOLUTELY NO IDEA HOW TO GET THAT FORMULA BUT I THINK IT MIGHT WORK???
+
+Now we can calculate the probability $p(e, E, N)$ of finding a particle with energy $e$ (given that there are $N$ particles whose total energy is $E$). Note that the average number of particles in each microstate with energy $e$ is equal to $N$ times $p(e, E, N)$.
+\[p(e, E, N) := \frac{f(e, E, N)}{N \Omega(E, N)} = \frac{(E+N-e-2)!}{(E-e)!(N-2)!} \cdot \frac{E!(N-1)!}{(N+E-1)!} = \frac{N-1}{E+N-1-e} \cdot \prod_{i=1}^e \frac{E+1-i}{E+N-i} \]
+
+\end{document}
