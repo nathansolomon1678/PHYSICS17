@@ -23,7 +23,7 @@ That microstate can be permuted $\frac{6!}{2!3!} = 60$ different ways, meaning t
 
 \section{Nasty combinatorics stuff}
 
-\[\Omega(E, N) := \text{\# of microstates} = \sum_{\text{macrostates with N particles \& energy E}} (\text{\# of permutations of that macrostate})\]
+\[\Omega(E, N) := \text{\# of microstates} = \sum_{\text{macrostates with $N$ particles \& energy $E$}} (\text{\# of permutations of that macrostate})\]
 
 Going back to the first diagram (the one where some partitions have no stars), we have a total of $N+E-1$ characters: $E$ stars and $N-1$ bars. So the number of ways to arrange those characters is
 \[\Omega(E, N) = {{N+E-1} \choose E} = {{N+E-1} \choose {N-1}} = \frac{(N+E-1)!}{E!(N-1)!} \]
@@ -34,8 +34,8 @@ In the example where $E=8$ and $N=6$, that tells us that there are $\Omega(8, 6)
 
 Define the function
 \begin{align*}
-    f(e, E, N) :&= \sum_{\text{microstates with N particles \& total energy E}} (\text{\# of particles with energy }e) \\
-    &= \sum_{n=1}^{\lfloor E / e \rfloor} n \cdot (\text{\# of microstates where exactly n particles have energy e})
+    f(e, E, N) :&= \sum_{\text{microstates with $N$ particles \& total energy $E$}} (\text{\# of particles with energy $e$}) \\
+    &= \sum_{n=1}^{\lfloor E / e \rfloor} n \cdot (\text{\# of microstates where exactly $n$ particles have energy $e$})
 \end{align*}
 
 Since each microstate has $N$ particles, we know that
@@ -53,5 +53,8 @@ I HAVE ABSOLUTELY NO IDEA HOW TO GET THAT FORMULA BUT I THINK IT MIGHT WORK???
 
 Now we can calculate the probability $p(e, E, N)$ of finding a particle with energy $e$ (given that there are $N$ particles whose total energy is $E$). Note that the average number of particles in each microstate with energy $e$ is equal to $N$ times $p(e, E, N)$.
 \[p(e, E, N) := \frac{f(e, E, N)}{N \Omega(E, N)} = \frac{(E+N-e-2)!}{(E-e)!(N-2)!} \cdot \frac{E!(N-1)!}{(N+E-1)!} = \frac{N-1}{E+N-1-e} \cdot \prod_{i=1}^e \frac{E+1-i}{E+N-i} \]
+
+\section{Use Stirling's approximation to get Boltzmann factor???}
+
 
 \end{document}
