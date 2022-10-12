@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+
+\begin{document}
+
+\title{Thermodynamics}
+\author{Nathan Solomon}
+\maketitle
+
+\section{Definitions of entropy \& temperature}
+The entropy, $S$, of a system is defined in terms of the logarithm of the number of accessible microstates:
+\[S := k_B \ln{\Omega(E)}\]
+
+We can define temperature, $T$, in terms of the relationship between $E$ and $\Omega(E)$, if we pretend that $E$ and $\Omega(E)$ are differentiable.
+
+\[\frac{1}{T} = \frac{\partial S}{\partial E} = \frac{k_B}{\Omega(E)} \cdot \frac{\partial \Omega(E)}{\partial E}\]
+
+That simplifies to
+\[T = \frac{\Omega(E)}{k_B \Omega'(E)}\]
+
+TODO: COME UP WITH AN INTUITIVE WAY TO INTERPRET TEMPERATURE AS IT IS DEFINED HERE
+
+
+\section{Boltzmann factor}
+\subsection{Derived using partial derivatives}
+\subsection{Derived using Stirling's approximation}
+
+
+\section{Derivation of ideal gas law}
+
+\section{Derivation of Maxwell-Boltzmann velocity distribution}
+Find formula for median, mode, mean, and RMS
+
+\section{Stern–Gerlach experiment}
+
+\section{Other misc stuff from textbooks?}
+
+
+\end{document}
