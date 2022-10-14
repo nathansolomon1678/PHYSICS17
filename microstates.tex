@@ -11,7 +11,7 @@
 \maketitle
 
 \section{Macrostates vs. microstates}
-Suppose you have system of $N$ particles which each have a nonnegative integer amount of energy, and the total energy of the system is $E$, where $E \geq N$. Each way of distributing the energy between $N$ unordered particles is a macrostate, and each way of distributing the energy between $N$ ordered particles is a microstate. Counting microstates is useful because all microstate are equally likely, so we can figure out the probability a that particle will be at a given energy level. Counting macrostates is interesting but not really useful, and it's pretty difficult, because it requires a variation of the integer-partition-function.
+Suppose you have system of $N$ particles which each have a nonnegative integer amount of energy, and the total energy of the system is $E$, where $E \geq N$. Each way of distributing the energy between $N$ unordered particles is a macrostate, and each way of distributing the energy between $N$ ordered particles is a microstate. Counting microstates is useful because all microstate are equally likely, so we can figure out the probability that a particle will be at a given energy level. Counting macrostates is interesting but not really useful, and it's pretty difficult, because it requires a variation of the integer-partition-function.
 
 Each microstate can be represented by a stars-and-bars diagram, where each star is a unit of energy. For example, in a system with $N=6$ and $E=8$, where one particle has energy=4, 2 particles have energy=2, and the rest have zero energy, the diagram could look like
 \[\star \star \star \star | \star \star | \star \star | | |\]
@@ -26,7 +26,7 @@ Define the function $\Omega$ as the total number of microstates accessible to ou
 
 \[\Omega(E, N) := \text{\# of microstates} = \sum_{\text{macrostates with $N$ particles \& energy $E$}} (\text{\# of permutations of that macrostate})\]
 
-Going back to the first stars-and-bars diagram (the one where some partitions have no stars), we have a total of $N+E-1$ characters: $E$ stars and $N-1$ bars. So the number of ways to arrange those characters is
+Going back to the first stars-and-bars diagram (the one where some partitions have zero stars), we have a total of $N+E-1$ characters: $E$ stars and $N-1$ bars. So the number of ways to arrange those characters is
 \[\Omega(E, N) = {{N+E-1} \choose E} = {{N+E-1} \choose {N-1}} = \frac{(N+E-1)!}{E!(N-1)!} \]
 
 In the example where $E=8$ and $N=6$, that tells us that there are $\Omega(8, 6) = 1287$ microstates.
@@ -42,9 +42,10 @@ If we add up the number of particles in each microstate across all microstates, 
 We can then expand $\Omega(x, E, N)$ using the Hockey Stick Identity:
 \[\sum_{x=0}^E f(x, E, N) = N \cdot {{N+E-1} \choose {N-1}} = N \cdot \sum_{x=0}^E {{N+E-x-2} \choose {N-2}} \]
 
-This leads to a very reasonable guess for what $f(x, E, N)$ is, which you could probably prove with induction if you take the base case to be $f(E,E,N) = N$.
+This leads to a very reasonable guess for what $f(x, E, N)$ is, which you can prove with induction if you take the base case to be $f(E,E,N) = N$.
 \[f(x, E, N) = N \cdot {{N+E-x-2} \choose {N-2}}\]
 
+Alternatively, you could prove that that works by using Pascal's identity plus induction, which is simpler but not as cool.
 
 Now we can calculate the probability $p(x, E, N)$ that a random particle in our system will have energy $x$ (given that there are $N$ particles in the system, whose total energy is $E$). Note that the average number of particles in each microstate with energy $x$ is equal to $N$ times $p(x, E, N)$.
 \[p(x, E, N) := \frac{f(x, E, N)}{N \Omega(E, N)} = \frac{(E+N-x-2)!}{(E-x)!(N-2)!} \cdot \frac{E!(N-1)!}{(N+E-1)!} = \frac{N-1}{E+N-1-x} \cdot \prod_{i=1}^x \frac{E+1-i}{E+N-i} \]

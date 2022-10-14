@@ -11,7 +11,7 @@
 \maketitle
 
 \section{General rules}
-These should work no matter what the degree of $a$ and $b$ are. Note that the degree of a multivector is only defined if all its terms have the same degree.
+Terminology: a $k$-blade is a multivector that can be written as the wedge product of $k$ vectors. A degree $k$ homogeneous multivector can be written as the sum of a bunch of $k$-blades. The rules below should work for any multivectors $a, b, c \in G(n, 0)$, although of course the rules that use the $\deg$ operator on a multivector also require that multivector to be homogeneous.
 \begin{itemize}
     \item Associativity: $(ab)c = a(bc)$
     \item Left distributivity: $a(b+c) = ab+ac$
@@ -21,19 +21,12 @@ These should work no matter what the degree of $a$ and $b$ are. Note that the de
     \item Dot product commutativity: $a \cdot b = b \cdot a$
     \item Wedge product anticommutativity: $a \wedge b = (-1)^{\deg(a) \deg(b)} b \wedge a$
     \item $\deg(a \cdot b) = | \deg(a) - \deg(b) |$
-    \item $\deg(a \wedge b) = \deg(a) + \deg(b)$ (if the degree of a multivector is greater than the dimension of the vector space it lives in, it must be zero. For example, any trivector in 2D will be written in terms of $e_1 \wedge e_1$ and $e_2 \wedge e_2$, which are both zero)
-\end{itemize}
-
-\section{Rules that work for blades (but not all multivectors)}
-Terminology: a $k$-blade is a multivector that can be written as the wedge product of $k$ vectors. A multivector is any combination of blades -- for example, $e_1 e_2 + e_3 e_4 \in G(4,0)$ and $1 + e_1 \in G(1,0)$ are multivectors but not  blades.
-
-\begin{itemize}
-    \item Euclidean metric: $a^2 = ||a||^2$ where $||a||$ is a scalar
-    \item Factorability: if $\deg(a) = x + y$, then $a$ can be written as the geometric product of an $x$-blade and a $y$-blade.
+    \item $\deg(a \wedge b) = \deg(a) + \deg(b) \text{ if } \deg(a) + \deg(b) \leq n \text{ otherwise } a \wedge b = 0$
 \end{itemize}
 
 \section{Rules that might not work unless $a$ and $b$ are vectors}
 \begin{itemize}
+    \item Euclidean metric: $a^2 = ||a||^2$ where $||a||$ is a scalar
     \item $ab = a \cdot b + a \wedge b$
     \item $a \wedge b = - b \wedge a$
     \item $a \cdot b = \frac{1}{2}(ab + ba)$
