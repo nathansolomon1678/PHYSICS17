@@ -10,6 +10,17 @@
 \author{Nathan Solomon}
 \maketitle
 
+\section{Laws of thermodynamics}
+(taken from Wikipedia)
+
+\textbf{0th Law:} If two systems are both in thermal equilibrium with a third system, then they are in thermal equilibrium with each other.
+
+\textbf{1st Law:} In a closed system, $\Delta U_{system} = Q - W$ where $U$ is the total internal energy, $Q$ is the heat supplied to the system, and $W$ is the work done by the system (on its surroundings).
+
+\textbf{2nd Law:} When two initially isolated systems in separate but nearby regions of space, each in thermodynamic equilibrium with itself but not necessarily with each other, are then allowed to interact, they will eventually reach a mutual thermodynamic equilibrium. The sum of the entropies of the initially isolated systems is less than or equal to the total entropy of the final combination. Equality occurs just when the two original systems have all their respective intensive variables (temperature, pressure) equal; then the final system also has the same values.
+
+\textbf{3rd Law:} A system's entropy approaches a constant value as its temperature approaches absolute zero.
+
 \section{Definitions of entropy \& temperature}
 The entropy, $S$, of a system is defined in terms of the logarithm of the number of accessible microstates:
 \[S := k_B \ln{\Omega(E)}\]
@@ -21,22 +32,74 @@ We can define temperature, $T$, in terms of the relationship between $E$ and $\O
 That simplifies to
 \[T = \frac{\Omega(E)}{k_B \Omega'(E)}\]
 
-TODO: COME UP WITH AN INTUITIVE WAY TO INTERPRET TEMPERATURE AS IT IS DEFINED HERE
+This is a pretty unintuitive definition of temperature. One thing it does show clearly though is that for two systems that can exchange energy with each other, their total entropy is maximized when they are at the same temperature.
 
+Since the definition of temperature is so wack, we often use the quantity $\beta$ instead.
+\[\beta := \frac{1}{k_B T} \]
+
+If we use the units electron-Volts and Kelvin, we can approximate room temperature as $300K$ (actual value is $293.15K$), and then $\beta$ at room temperature is roughly $40 (eV)^{-1}$ (actual value is $39.586 (eV)^{-1}$), since $k_B$ is $8.617 \times 10^{-5} eV/K$.
 
 \section{Boltzmann factor}
-\subsection{Derived using partial derivatives}
-\subsection{Derived using Stirling's approximation}
+Suppose you have a box of particles at thermal equilibirum which is split into two sides. The first one has energy $E_1$ and $\Omega(E_1)$ accessible microstates; the other has energy $E_2$ and $\Omega(E_2)$ accessible microstates. The two systems together have energy $E = E_1 + E_2$ and $\Omega(E)$ accessible microstates.
 
+Assuming $E_2$ is small compared to $E_1$ and $E$, we can approximate $\ln \Omega(E_1)$ using the first order Taylor expansion of $\ln \Omega$, centered at $E$:
+\[\ln \Omega(E_1) \approx \ln \Omega(E) - E_2 \left. \frac{\partial \ln \Omega(x)}{\partial x} \right|_{x=E}\]
 
-\section{Derivation of ideal gas law}
+where $x$ is a dummy variable. Using the definitions of entropy and temperature, that becomes
+\begin{align*}
+    \ln \Omega(E_1) &\approx \ln \Omega(E) - \frac{E_2}{k_B T} \\
+    \frac{\Omega(E_1)}{\Omega(E)} &\approx \exp\Big( -\frac{E_2}{k_B T} \Big)
+\end{align*}
+
+If we suppose the second side of this system is a single particle, the approximation becomes essentially perfect.
+\[\Omega(E_1) \propto e^{- E_2 / k_B T} \]
+
+According to the \textbf{Fundamental Statistical Postulate (FSP)}, all microstates are equally likely, meaning the probability a particle will have energy $E_2$ is proportional to $\Omega(E_1)$.
+\[P(E_2) \propto e^{- E_2 / k_B T} \]
 
 \section{Derivation of Maxwell-Boltzmann velocity distribution}
-Find formula for median, mode, mean, and RMS
+The probability that a particle will have velocity $v = (v_x, v_y, v_z)$ is proportional to $e^{- \beta m v^2 / 2} dv$. That means we can define the probability distribution function as
+\[F(v) dv = C e^{- \beta m v^2 / 2} dv\]
+where $C$ is some constant. To determine what $C$ is, note that $F(v) dv$ integrated over all possible velocities is one, since probabilities always add to one.
+\[\int_{v \in \mathbb{R}^3} F(v) dv = 1 \]
 
-\section{Stern–Gerlach experiment}
+Now we just have to compute that integral.
+\begin{align*}
+    \int_{v \in \mathbb{R}^3} F(v) dv &= C \int_{\mathbb{R}^3} e^{- \beta m v^2 / 2} dv \\
+    &= C \int_{\mathbb{R}} \int_{\mathbb{R}} \int_{\mathbb{R}} e^{- \beta m (v_x^2 + v_y^2 + v_z^2) / 2} dv_x dv_y dv_z \\
+    &= C \Bigg( \int_{\mathbb{R}} e^{- \beta m v_x^2 / 2} dv_x \Bigg)^3 \\
+    &= C \Bigg( \int_{\mathbb{R}} e^{- \beta m v_x^2 / 2} dv_x \Bigg)^3 \\
+    &= C \Bigg( \int_{x \in \mathbb{R}} \int_{y \in \mathbb{R}} e^{- \beta m (x^2 + y^2) / 2} dx dy \Bigg)^{3/2} \\
+    &= C \Bigg( \int_{r>0} \int_{\theta \in [0, 2\pi]} r e^{- \beta m r^2 / 2} d\theta dr \Bigg)^{3/2} \\
+    &= C \Big( \frac{2 \pi}{\beta m} \Big)^{3/2} \\
+    &= C \Big( \frac{2 \pi k_B T}{m} \Big)^{3/2}
+\end{align*}
 
-\section{Other misc stuff from textbooks?}
+That means that
+\[C = \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2}\]
+and
+\[F(v) dv = \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m v^2}{2 k_B T}} dv\]
 
+But we don't want to know what velocities are likely; we care which speeds are likely. If we convert $v$ to spherical coordinates and integrate over infinitely thin spherical shells, we can calculate the probability distribution in terms of speed:
+\[F(|v|) d|v| = 4 \pi v^2 \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m v^2}{2 k_B T}} d|v|\]
+
+\section{Equipartition theorem}
+All particles in a system have the same RMS speed, and one way to show that is by finding an explicit formula for it.
+\begin{align*}
+    E_{RMS} &= \int_{|v|=0}^\infty E \cdot F(|v|) d|v| \\
+    &= \int_{|v|=0}^\infty \frac{m |v|^2}{2}  \cdot F(|v|) d|v| \\
+    &= \int_{|v|=0}^\infty \frac{m |v|^2}{2} \cdot 4 \pi |v|^2 \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m |v|^2}{2 k_B T}} d|v| \\
+    &= \int_{v^2=0}^\infty \pi m v^3 \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m v^2}{2 k_B T}} d(v^2) \\
+    &= \pi m \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} \int_{x=0}^\infty x^{3/2} e^{-\frac{m x}{2 k_B T}} dx \\
+\end{align*}
+
+This is now a very painful integral, but it simplifies to
+\[E_{RMS} = \frac{3}{2} k_B T\]
+
+\section{Heat capacity}
+Define the heat capacity, $C$, of a material as
+\[C := \frac{\partial E_{RMS}}{\partial T} \]
+
+The heat capacity of an ideal gas that doesn't contain any vibration or rotaional or chemical energy would be $1.5 k_B$, as shown above. The general rule is that the heat capacity of a material is the number of degrees of freedom per particle times $k_B / 2$. For example, in gases, there are 3 degrees of freedom: kinetic energy in each direction. For most metals, there are 6 degrees of freedom: 3 from kinetic energy in each direction and 3 from potential energy in each direction. For warm diatomic gases, there's the 3 degrees of freedom from kinetic energy plus two from rotational kinetic energy (rotating about the axis doesn't count since there's so little energy in that). For hot gases, there's those 5, plus 2 from the kinetic and potential energy from vibrating.
 
 \end{document}
