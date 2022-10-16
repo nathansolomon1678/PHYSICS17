@@ -24,19 +24,14 @@
 \section{Definitions of entropy \& temperature}
 The entropy, $S$, of a system is defined in terms of the logarithm of the number of accessible microstates:
 \[S := k_B \ln{\Omega(E)}\]
-
 We can define temperature, $T$, in terms of the relationship between $E$ and $\Omega(E)$, if we pretend that $E$ and $\Omega(E)$ are differentiable.
-
 \[\frac{1}{T} = \frac{\partial S}{\partial E} = \frac{k_B}{\Omega(E)} \cdot \frac{\partial \Omega(E)}{\partial E}\]
-
 That simplifies to
 \[T = \frac{\Omega(E)}{k_B \Omega'(E)}\]
-
 This is a pretty unintuitive definition of temperature. One thing it does show clearly though is that for two systems that can exchange energy with each other, their total entropy is maximized when they are at the same temperature.
 
 Since the definition of temperature is so wack, we often use the quantity $\beta$ instead.
 \[\beta := \frac{1}{k_B T} \]
-
 If we use the units electron-Volts and Kelvin, we can approximate room temperature as $300K$ (actual value is $293.15K$), and then $\beta$ at room temperature is roughly $40 (eV)^{-1}$ (actual value is $39.586 (eV)^{-1}$), since $k_B$ is $8.617 \times 10^{-5} eV/K$.
 
 \section{Boltzmann factor}
@@ -44,16 +39,13 @@ Suppose you have a box of particles at thermal equilibirum which is split into t
 
 Assuming $E_2$ is small compared to $E_1$ and $E$, we can approximate $\ln \Omega(E_1)$ using the first order Taylor expansion of $\ln \Omega$, centered at $E$:
 \[\ln \Omega(E_1) \approx \ln \Omega(E) - E_2 \left. \frac{\partial \ln \Omega(x)}{\partial x} \right|_{x=E}\]
-
 where $x$ is a dummy variable. Using the definitions of entropy and temperature, that becomes
 \begin{align*}
     \ln \Omega(E_1) &\approx \ln \Omega(E) - \frac{E_2}{k_B T} \\
     \frac{\Omega(E_1)}{\Omega(E)} &\approx \exp\Big( -\frac{E_2}{k_B T} \Big)
 \end{align*}
-
 If we suppose the second side of this system is a single particle, the approximation becomes essentially perfect.
 \[\Omega(E_1) \propto e^{- E_2 / k_B T} \]
-
 According to the \textbf{Fundamental Statistical Postulate (FSP)}, all microstates are equally likely, meaning the probability a particle will have energy $E_2$ is proportional to $\Omega(E_1)$.
 \[P(E_2) \propto e^{- E_2 / k_B T} \]
 
@@ -62,7 +54,6 @@ The probability that a particle will have velocity $v = (v_x, v_y, v_z)$ is prop
 \[F(v) dv = C e^{- \beta m v^2 / 2} dv\]
 where $C$ is some constant. To determine what $C$ is, note that $F(v) dv$ integrated over all possible velocities is one, since probabilities always add to one.
 \[\int_{v \in \mathbb{R}^3} F(v) dv = 1 \]
-
 Now we just have to compute that integral.
 \begin{align*}
     \int_{v \in \mathbb{R}^3} F(v) dv &= C \int_{\mathbb{R}^3} e^{- \beta m v^2 / 2} dv \\
@@ -74,32 +65,38 @@ Now we just have to compute that integral.
     &= C \Big( \frac{2 \pi}{\beta m} \Big)^{3/2} \\
     &= C \Big( \frac{2 \pi k_B T}{m} \Big)^{3/2}
 \end{align*}
-
 That means that
 \[C = \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2}\]
 and
 \[F(v) dv = \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m v^2}{2 k_B T}} dv\]
-
 But we don't want to know what velocities are likely; we care which speeds are likely. If we convert $v$ to spherical coordinates and integrate over infinitely thin spherical shells, we can calculate the probability distribution in terms of speed:
 \[F(|v|) d|v| = 4 \pi v^2 \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m v^2}{2 k_B T}} d|v|\]
 
 \section{Equipartition theorem}
 All particles in a system have the same RMS speed, and one way to show that is by finding an explicit formula for it.
 \begin{align*}
-    E_{RMS} &= \int_{|v|=0}^\infty E \cdot F(|v|) d|v| \\
+    E_{avg} &= \int_{|v|=0}^\infty E \cdot F(|v|) d|v| \\
     &= \int_{|v|=0}^\infty \frac{m |v|^2}{2}  \cdot F(|v|) d|v| \\
     &= \int_{|v|=0}^\infty \frac{m |v|^2}{2} \cdot 4 \pi |v|^2 \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m |v|^2}{2 k_B T}} d|v| \\
     &= \int_{v^2=0}^\infty \pi m v^3 \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m v^2}{2 k_B T}} d(v^2) \\
     &= \pi m \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} \int_{x=0}^\infty x^{3/2} e^{-\frac{m x}{2 k_B T}} dx \\
 \end{align*}
-
 This is now a very painful integral, but it simplifies to
-\[E_{RMS} = \frac{3}{2} k_B T\]
+\[E_{avg} = \frac{3}{2} k_B T\]
 
 \section{Heat capacity}
 Define the heat capacity, $C$, of a material as
-\[C := \frac{\partial E_{RMS}}{\partial T} \]
+\[C := \frac{\partial E_{avg}}{\partial T} \]
 
 The heat capacity of an ideal gas that doesn't contain any vibration or rotational or chemical energy would be $1.5 k_B$, as shown above. The general rule is that the heat capacity of a material is the number of degrees of freedom per particle times $k_B / 2$. For example, in gases, there are 3 degrees of freedom: kinetic energy in each direction. For most metals, there are 6 degrees of freedom: 3 from kinetic energy in each direction and 3 from potential energy in each direction. For warm diatomic gases, there's the 3 degrees of freedom from kinetic energy plus two from rotational kinetic energy (rotating about the axis doesn't count since there's so little energy in that). For hot gases, there's those 5, plus 2 from the kinetic and potential energy from vibrating.
+
+\section{Ideal gas law}
+By considering the amount of impulse from each particle's collision with a wall, we can relate the pressure and volume and number of particles of a gas in a box with the energy per particle.
+\[P = \frac{N}{V} \cdot \frac{1}{3} \cdot E_{avg} \]
+But we know a formula for average energy of the particles in the gas:
+\[E_{avg} = 3 k_B T\]
+Plugging that in and simplifying gives the ideal gas law:
+\[P V = N k_B T\]
+
 
 \end{document}
