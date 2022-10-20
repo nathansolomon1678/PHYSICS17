@@ -84,6 +84,10 @@ All particles in a system have the same RMS speed, and one way to show that is b
 This is now a very painful integral, but it simplifies to
 \[E_{avg} = \frac{3}{2} k_B T\]
 
+From that equation, we infer that each degree of freedom has energy equal to
+\[ \frac{k_B T}{2} \]
+
+
 \section{Heat capacity}
 Define the heat capacity, $C$, of a material as
 \[C := \frac{\partial E_{avg}}{\partial T} \]
@@ -91,12 +95,15 @@ Define the heat capacity, $C$, of a material as
 The heat capacity of an ideal gas that doesn't contain any vibration or rotational or chemical energy would be $1.5 k_B$, as shown above. The general rule is that the heat capacity of a material is the number of degrees of freedom per particle times $k_B / 2$. For example, in gases, there are 3 degrees of freedom: kinetic energy in each direction. For most metals, there are 6 degrees of freedom: 3 from kinetic energy in each direction and 3 from potential energy in each direction. For warm diatomic gases, there's the 3 degrees of freedom from kinetic energy plus two from rotational kinetic energy (rotating about the axis doesn't count since there's so little energy in that). For hot gases, there's those 5, plus 2 from the kinetic and potential energy from vibrating.
 
 \section{Ideal gas law}
-By considering the amount of impulse from each particle's collision with a wall, we can relate the pressure and volume and number of particles of a gas in a box with the energy per particle.
-\[P = \frac{N}{V} \cdot \frac{1}{3} \cdot E_{avg} \]
-But we know a formula for average energy of the particles in the gas:
-\[E_{avg} = 3 k_B T\]
-Plugging that in and simplifying gives the ideal gas law:
-\[P V = N k_B T\]
+Consider an ideal gas moving in one dimension, with RMS speed $v_x$ along a line with length $L$, containing $N$ particles each of mass $m$. A particle moving at the RMS speed will collide with a wall with frequency $L / v_x$, and each time, it applies an impulse of $2 m v_x$. Therefore the average force each particle applies to the boundary of the line is $2 m v_x^2 / L$, and the total force on the boundary (averaged over time) is $F_x = 2 N m v_x^2 / L$. Note that $F_x$ is a scalar here. By making copies of that equation for the $y$ and $z$ directions and adding those 3 equations, we find that the total force (averaged over time) on the boundary of the box is
+\[F= \frac{2Nmv^2}{L} \]
+Since that equation is proportional to $v^2$, treating the gas as if all particles have speed equal to the RMS speed, as we did above, was indeed a valid move.
 
+For our box, the volume is $V = L^3$ and the area of the walls is $A = 6L^2$. That means that the pressure the gas applies on the walls is
+\[P = \frac{F}{A} = \frac{2Nmv^2}{6L^3} = \frac{Nmv^2}{3V} = \frac{2NE}{3V} \]
+But we know a formula for average energy of the particles in an ideal gas is
+\[E_{avg} = \frac{3 k_b T}{2}\]
+Plugging in our formula for pressure and simplifying gives the ideal gas law:
+\[P V = N k_B T\]
 
 \end{document}
