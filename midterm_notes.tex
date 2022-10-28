@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+
+\begin{document}
+
+\title{Midterm Notes}
+\author{Nathan Solomon}
+\maketitle
+
+\section{Partition function $Z$}
+\[ Z := \sum_i g_i e^{-\beta E_i} = \int g e^{- \beta E} dE \]
+\[E_{avg} = \frac{\sum_i E_i e^{-\beta E_i}}{\sum_i e^{-\beta E_i}} = \frac{\int E e^{-\beta E} dE}{\int e^{-\beta E} dE}  = - \frac{\partial}{\partial \beta} \ln Z\]
+
+\section{Spherical coords}
+\begin{align*}
+    x &= r \sin \theta \cos \phi \\
+    y &= r \sin \theta \sin \phi \\
+    z &= r \cos \theta
+\end{align*}
+\[dx \, dy \, dz = r^2 \sin \theta \, dr \, d\theta \, d\phi\]
+
+\section{Summation identities}
+\subsection{Taylor series}
+\[\sum_{n=0}^\infty x^n = \frac{1}{1-x} \]
+Differentiate that and multiply by $x$ to get this formula:
+\[\sum_{n=0}^\infty nx^n = \frac{x}{(1-x)^2} \]
+
+\subsection{Binomial coefficients}
+\[ \binom{n}{k} := \frac{n!}{k! (n-k)!} \]
+Pascal's identity:
+\[\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}\]
+Binomial theorem:
+\[(a+b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}\]
+
+
+\section{Electricity \& magnetism}
+
+\[E^2 = m^2 c^4 + p^2 c^2\]
+
+\section{Notecard for midterms \& final}
+Also include Maxwell's equations, and any messy equations, such as the Maxwell-Boltzmann speed distribution and the blackbody radiation equation. Be sure to include numerical values (in various units) of Boltzmann's constant, Planck's constant, the speed of light, vacuum permittivity, vacuum permeability, and Avogadro's number. And of course, go back through old notes and include any other key concepts \& equations.
+
+\end{document}
