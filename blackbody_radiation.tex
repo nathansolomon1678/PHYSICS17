@@ -1,0 +1,18 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+
+\begin{document}
+
+\title{Blackbody Radiation}
+\author{Nathan Solomon}
+\maketitle
+
+\section{Density of states in $k$-space}
+For a standing harmonic wave in a one-dimensional container of length $L$, the wavenumber $k$ can be any integer multiple of $\pi/L$. Each harmonic wave that satisfies the boundary conditions represents one possible state, so in $k$-space, the density of possible states is $L/\pi$. Now if you consider standing waves in a 3-dimensional box with volume $V$, and let $k$ be the 3D wavevector, then the density of states in $k$-space is $V/\pi^3$.
+
+Standing waves have the boundary condition that they're equal to zero at the beginning and end of the box. But standing waves are boring, we want to model traveling waves! The whole ``particle in a box" model doesn't work too well anymore, so we replace the ``box" with a 3-torus ($T^3 \cong \mathbb{R}^3 / \mathbb{Z}^3 \cong S \times S \times S$). Or in one dimension, just use the topological equaivalent of a circle ($S = \mathbb{R} / \mathbb{Z}$), so the boundary condition is just that the values of the wave at either ``end" of the ``box" are the same. That means the possible values of $k$ in one dimension are any integer multiples of $2 \pi / L$, so the density of states is $L / 2 \pi$ and in 3D, the density of states is $V / 8 \pi^3$.
+
+\end{document}
