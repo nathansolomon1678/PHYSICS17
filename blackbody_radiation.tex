@@ -2,6 +2,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{esint}
 \usepackage{tikz-cd}
 
 \begin{document}
@@ -13,6 +14,55 @@
 \section{Density of states in $k$-space}
 For a standing harmonic wave in a one-dimensional container of length $L$, the wavenumber $k$ can be any integer multiple of $\pi/L$. Each harmonic wave that satisfies the boundary conditions represents one possible state, so in $k$-space, the density of possible states is $L/\pi$. Now if you consider standing waves in a 3-dimensional box with volume $V$, and let $k$ be the 3D wavevector, then the density of states in $k$-space is $V/\pi^3$.
 
-Standing waves have the boundary condition that they're equal to zero at the beginning and end of the box. But standing waves are boring, we want to model traveling waves! The whole ``particle in a box" model doesn't work too well anymore, so we replace the ``box" with a 3-torus ($T^3 \cong \mathbb{R}^3 / \mathbb{Z}^3 \cong S \times S \times S$). Or in one dimension, just use the topological equaivalent of a circle ($S = \mathbb{R} / \mathbb{Z}$), so the boundary condition is just that the values of the wave at either ``end" of the ``box" are the same. That means the possible values of $k$ in one dimension are any integer multiples of $2 \pi / L$, so the density of states is $L / 2 \pi$ and in 3D, the density of states is $V / 8 \pi^3$.
+Standing waves have the boundary condition that they're equal to zero at the beginning and end of the box. But standing waves are boring, we want to model traveling waves! The whole ``particle in a box" model doesn't work too well anymore, so we replace the ``box" with a 3-torus ($T^3 \cong \mathbb{R}^3 / \mathbb{Z}^3 \cong S \times S \times S$). Or in one dimension, just use the topological equaivalent of a circle ($S = \mathbb{R} / \mathbb{Z}$), so the boundary condition is just that the values of the wave at either ``end" of the ``box" are the same. That means the possible values of $k$ in one dimension are any integer multiples of $2 \pi / L$, so the density of states is $L / 2 \pi$ and in 3D, the density of states is $V / 8 \pi^3$. But if we're considering light waves, there are two polarization states for each axis (this is sort of like the degeneracy of states), so the density of states for photons in a box is $V / 4 \pi^3$.
+
+The density states is then a constant function of $k$:
+\[N(k) = \frac{V}{4 \pi^3} dk_x dk_y dk_z\]
+We now want to know the density of states as a function of $k$, so we use the fun trick of converting to spherical coords and integrating over concentric spherical shells.
+\[N(|k|) = \oiint\limits_\text{constant $|k|$} N(k) = \frac{V}{4 \pi^3} (4 \pi k^2 d|k|) = \frac{V k^2}{\pi^2} d|k|\]
+Since we're considering photons, we can use the substitution $|k| = 2 \pi f / c$ where $f$ is (temporal) frequency. That also means that $d|k| = 2 \pi df / c$, so the density of states as a function of $f$ is
+\[N(f) = \frac{8 \pi V f^2}{c^3} df\]
+
+\section{Spectral energy density}
+The spectral energy density, $u(f, T)$ represents the energy per volume per frequency. That's equal to the energy per state, times the density of states, times the probability of being in each of those states, divided by the volume. Since the enrgy is $E = hf$, that works out to
+\[E(f) \cdot N(f) \cdot \frac{1}{e^{E(f)/k_B T} - 1} \cdot \frac{1}{V} \]
+Plugging in the formulas for $E$ and $N$, that becomes
+\[u(f, T) = \frac{8 \pi h f^3}{c^3 (e^{hf/k_B T} - 1)} df\]
+If you substitute in $f = c / \lambda$ and $df = - c d\lambda / \lambda^2$, you can also get the spectral energy density in terms of wavelength (although you also have to take the absolute value of that, since increasing $f$ means decreasing $\lambda$)
+\[ u(\lambda, T) = - \frac{8 \pi h}{\lambda^3 (e^{h c / \lambda k_B T} - 1)} \Bigg( - \frac{c \, d\lambda}{\lambda^2} \Bigg) = \frac{8 \pi h c}{\lambda^5 (e^{h c / \lambda k_B T} - 1)} d\lambda \]
+We also sometimes use the spectral radiance, $B$, instead of spectral energy density. Spectral radiance is the power emitted per unit area.
+\[ B := \frac{c u}{4 \pi} \]
+
+At large frequencies and small temperatures, you can approximate the Bose-Einstein distribution with the Maxwell-Boltzmann distribution:
+\[ \lim_{f/T \rightarrow \infty} u(f, T) = \frac{8 \pi h f^3}{c^3} e^{-hf/k_B T} df \]
+That approximation is called Wien's law, Wien's distribution law, or Wien's approximation. Don't confuse it with Wien's displacement law, which is described below. Similarly, you can come up with an estimation for small frequencies and large temperatures by using a first-order Maclauring series expansion of the Boltzmann factor:
+\[ \lim_{T/f \rightarrow \infty} u(f, T) = \frac{8 \pi h f^3}{c^3 ((1 + hf/k_B T) - 1)} df  = \frac{8 \pi f^2 k_B T}{c^3} df \]
+That equation is the classical approximation, called the Rayleigh-Jeans law. For a long time scientists were bamboozled by the ``ultraviolet catastrophe" -- the idea that according to this law, $u(f, T)$ should go to infinity as you look at higher and higher frequencies, which is clearly incorrect. This was solved by the correct formulas for $B$ and $u$ derived above, which are called Planck's law.
+
+\section{Wien's displacement law}
+Let $\lambda_{\text{max}}$ be the value of $\lambda$ such that $u(\lambda, T)$ is maximized. Note that $\lambda_\text{max}$ is a function of temperature. Wien's displacement law (different from Wien's law) states that $\lambda_\text{max} T$ is a universal constant.
+
+You can also define $f_\text{max}$ to be the value of $f$ such that $u(f, T)$ is maximized. By the relation $\lambda = c / f$, that means $c T / f_\text{max}$ is also a constant, BUT NOT THE SAME CONSTANT. In fact, the latter is slightly larger.
+
+\section{Stefan's law}
+Imagine a hole in a box. The rate of effusion of particles is $A c / 4$, so the power emitted from that blackbody is
+\begin{align*}
+    P &= \frac{A c}{4} \int_0^\infty u(f, T) df \\
+      &= \frac{A c}{4} \int_0^\infty \frac{8 \pi h f^3}{c^3 (e^{hf/k_B T} - 1)}  df \\
+      &= \frac{2 \pi A h}{c^2} \int_0^\infty \frac{f^3}{e^{hf/k_B T} - 1} df \\
+      &= \frac{2 \pi A h}{c^2} \Bigg( \frac{k_B T}{h} \Bigg)^4 \int_0^\infty \frac{x^3}{e^x - 1} dx \\
+      &= \frac{2 \pi k_B^4 T^4 A}{c^2 h^3} \int_0^\infty \frac{x^3}{e^x - 1} dx
+\end{align*}
+That funky integral is difficult to evaluate, but for some unknown reason it becomes
+\[ \int_0^\infty \frac{x^3}{e^x - 1} dx = \Gamma(4) \zeta(4) = \frac{\pi^4}{15} \]
+Therefore we can solve for the ``blackbody radiant emittance" ($j^\star = P / A$):
+\[ j^\star = \sigma T^4 \]
+That equation is Stefan's law, and $\sigma$ is the Stefan-Boltzmann constant.
+\[ \sigma := \frac{2 \pi^5 k_B^4}{15 c^2 h^3} \]
+
+\section{Debye sphere}
+Stefan's law doesn't have a clear intuitive interpretation, but here's one way to think about it. Suppose you're in $k$-space, and have a sphere of radius $k_D$ that encloses pretty much all of the occupied $k$-states. According to the equipartition theorem, energy is proportional to $k_B T$, so energy per $k$-state is proportional to $T$. But according to the Planck relation and the equipartition theorem, the energy corresponding to a photon with wavenumber $k_D$ is
+\[ E = h c k_D / 2 \pi = k_B T \]
+which means as $T$ increases, the radius of the Debye sphere must increase proportionally to $T$, which means the number of occupied states enclosed by the sphere increases cubically with $T$. Since power is proportional to the number of states and also to the energy per state, it will increase quartically with temperature.
 
 \end{document}

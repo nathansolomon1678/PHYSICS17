@@ -6,4 +6,4 @@
 *.toc
 
 lecture_notes.pdf
-HW[0-9]+.pdf
+HW*.pdf
