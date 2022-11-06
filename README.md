@@ -8,4 +8,5 @@ These notes are meant to be read in chronological order:
 * Week 3: [Thermodynamics](thermodynamics.pdf)
 * Week 4: [Bosons & Fermions](bosons_and_fermions.pdf)
 * Week 5: [Blackbody Radiation](blackbody_radiation.pdf)
+* Week 6: [Bohr & Rutherford](bohr_and_rutherford.pdf) (Incomplete)
 * [Midterm & final notes sheet](midterm_notes.pdf)
