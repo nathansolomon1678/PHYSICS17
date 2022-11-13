@@ -53,12 +53,25 @@ Imagine a hole in a box. The rate of effusion of particles is $A c / 4$, so the 
       &= \frac{2 \pi A h}{c^2} \Bigg( \frac{k_B T}{h} \Bigg)^4 \int_0^\infty \frac{x^3}{e^x - 1} dx \\
       &= \frac{2 \pi k_B^4 T^4 A}{c^2 h^3} \int_0^\infty \frac{x^3}{e^x - 1} dx
 \end{align*}
-That funky integral is difficult to evaluate, but for some unknown reason it becomes
-\[ \int_0^\infty \frac{x^3}{e^x - 1} dx = \Gamma(4) \zeta(4) = \frac{\pi^4}{15} \]
+That funky integral is difficult to evaluate. Lucikly online resources have figured out ow to do it for us.
+\begin{align*}
+    \int_0^\infty \frac{x^3}{e^x - 1} dx &= \int_0^\infty \frac{x^3 e^{-x}}{1 - e^{-x}} dx \\
+    &= \int_0^\infty x^3 e^{-x} \sum_{n=0}^\infty (e^{-x})^n dx \\
+    &= \int_0^\infty x^3 \sum_{n=1}^\infty e^{-nx} dx \\
+    &= \sum_{n=1}^\infty \int_0^\infty x^3 e^{-nx} dx \\
+    &= \sum_{n=1}^\infty \int_0^\infty \left( \frac{y}{n} \right)^3 e^{-y} \left( \frac{dy}{n} \right) \\
+    &= \sum_{n=1}^\infty \frac{1}{n^4} \cdot \int_0^\infty y^3 e^{-y} dy \\
+    &= \zeta(4) \cdot \Gamma(4) \\
+    &= \frac{\pi^4}{90} \cdot (3!) \\
+    &= \frac{\pi^4}{15}
+\end{align*}
 Therefore we can solve for the ``blackbody radiant emittance" ($j^\star = P / A$):
 \[ j^\star = \sigma T^4 \]
 That equation is Stefan's law, and $\sigma$ is the Stefan-Boltzmann constant.
 \[ \sigma := \frac{2 \pi^5 k_B^4}{15 c^2 h^3} \]
+That works only for blackbodies though -- if we want to generalize it to work for other materials, we can say
+\[ j^\star = a \sigma T^4 \]
+Where $a$ is the absorptivity/emissivity of the material (which is 1 for blackbodies, and somewhere between 0 and 1 for other materials).
 
 \section{Debye sphere}
 Stefan's law doesn't have a clear intuitive interpretation, but here's one way to think about it. Suppose you're in $k$-space, and have a sphere of radius $k_D$ that encloses pretty much all of the occupied $k$-states. According to the equipartition theorem, energy is proportional to $k_B T$, so energy per $k$-state is proportional to $T$. But according to the Planck relation and the equipartition theorem, the energy corresponding to a photon with wavenumber $k_D$ is
