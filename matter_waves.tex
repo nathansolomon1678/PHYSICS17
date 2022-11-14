@@ -10,12 +10,30 @@
 \author{Nathan Solomon}
 \maketitle
 
-\section{?}
+\section{Cool Integral Trick}
+Before starting the actual notes, here's a fun integral. It's particularly useful for solving all those problems where you average something over a probability distribution. It assumes $\operatorname{Re}(a)>0$ and $n \in \mathbb{N}$.
+\begin{align*}
+    \int_0^\infty x^n e^{-x/a} dx &= \int_0^\infty (a^n y^n) e^{-y} (a \, dy) \\
+    &= a^{n+1} \int_0^\infty y^n e^{-y} dy \\
+    &= a^{n+1} \Gamma(n+1) \\
+    &= n! \, a^{n+1}
+\end{align*}
 
-Derive uncertainty principle from nyquist-shannon sampling theorem and fourier transform
+\section{Another Unrelated Topic}
+We should memorize this definition of the fine-structure constant:
+\[ \alpha := \frac{e^2}{4 \pi \varepsilon_0 \hbar c} = \frac{e^2}{2 \varepsilon_0 h c} \approx \frac{1}{137} \]
+It was also recommended that we remember the following approximations:
+\[ \hbar c \approx 197 \text{ eV nm} \]
+\[ \frac{e^2}{4 \pi \varepsilon_0} \approx 1.44 \text{ eV nm} \]
 
-relitivistic equation for wavelength, and other stuff from lecture notes
+\section{Dispersion Relations}
+This is pretty much all we need to know:
+\[ v_\text{phase} = \omega / k \]
+\[ v_\text{group} = \frac{\partial \omega}{\partial k} \]
+For all matter waves, the geometric mean of the phase velocity and the group velocity is $c$, the speed of light. For non-dispersive waves, such as light traveling through a vacuum, the phase and group velocities are both $c$.
 
-Include stuff from chapter 5 of serway
+\section{Uncertainty Principle}
+
+\section{Fourier Inversion Theorem}
 
 \end{document}
