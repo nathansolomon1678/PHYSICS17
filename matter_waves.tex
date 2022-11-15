@@ -27,13 +27,24 @@ It was also recommended that we remember the following approximations:
 \[ \frac{e^2}{4 \pi \varepsilon_0} \approx 1.44 \text{ eV nm} \]
 
 \section{Dispersion Relations}
-This is pretty much all we need to know:
+This is pretty much all we need to know about dispersion relations (for now):
 \[ v_\text{phase} = \omega / k \]
 \[ v_\text{group} = \frac{\partial \omega}{\partial k} \]
 For all matter waves, the geometric mean of the phase velocity and the group velocity is $c$, the speed of light. For non-dispersive waves, such as light traveling through a vacuum, the phase and group velocities are both $c$.
 
 \section{Uncertainty Principle}
+Suppose you have some signal, which is a function of time, and you measure $n$ samples from it, which are evenly spaced time $\Delta t$ apart. Now you know that that signal exists within a window of time with width $n \Delta t$, so that represents your ``uncertainty in time". But suppose you also want to measure the frequency of the signal. According to the Nyquist-Shannon sampling theorem, the highest frequency you can extract from your samples is $1/(2 \Delta t)$. Trying to measure the frequencies that exist in the signal is equivalent to trying to reconstruct the signal using the sum of several sinusoids, and in this case, you need $n$ sinusoids whose frequencies are evenly spaced, ranging from zero to $1/(2\Delta t)$ (including the upper bound, but not including zero). That means the lowest frequency you can measure using the $n$ samples is $1/(2n\Delta t)$, which represents your ``uncertainty in frequency".
+
+THIS SECTION IS INCOMPLETE -- STILL NEED TO FIGURE OUT WHEN AND HOW THE FACTORS OF 2 PI COME IN, AND GENERALIZE THE UNCERTAINTY PRINCIPLE TO WORK WITH SPACE AS WELL AS TIME, AND WITH ENERGY AND MOMENTUM.
 
 \section{Fourier Inversion Theorem}
+The inverse Fourier transform of the Fourier transform of $f(x)$ is
+\begin{align*}
+    \mathcal{F}^{-1}(\mathcal{F}(f))(x) &= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty \left( \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty f(x') e^{-ikx} dx' \right) e^{ikx} dk \\
+    &= \int_{-\infty}^\infty f(x') \left( \frac{1}{2 \pi} \int_{-\infty}^\infty e^{-ik(x - x')} dk \right) dx' \\
+    &= \int_{-\infty}^\infty f(x') \delta(x - x') dx' \\
+    &= f(x)
+\end{align*}
+This proves that $\mathcal{F}^{-1}$ and $\mathcal{F}$, as we have defined them, are indeed inverses, which is good. That proof above uses the Dirac $\delta$ ``function", which is more like the limit of a function than an actual function, but it makes everything work out nicely, so we leave out the nitty-gritty details.
 
 \end{document}
