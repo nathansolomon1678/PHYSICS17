@@ -10,6 +10,9 @@
 \author{Nathan Solomon}
 \maketitle
 
+\section{Notecard for midterms \& final}
+This document has all of the most important equations to include on your notecard EXCEPT for the stuff that was in notes from previous weeks (e.g. the Maxwell-Boltzmann speed distribution, the blackbody radiation equation, et cetera).
+
 \section{Partition function $Z$}
 \[ Z := \sum_i g_i e^{-\beta E_i} = \int g e^{- \beta E} dE \]
 \[E_{avg} = \frac{\sum_i E_i e^{-\beta E_i}}{\sum_i e^{-\beta E_i}} = \frac{\int E e^{-\beta E} dE}{\int e^{-\beta E} dE}  = - \frac{\partial}{\partial \beta} \ln Z\]
@@ -18,29 +21,61 @@
 \begin{align*}
     x &= r \sin \theta \cos \phi \\
     y &= r \sin \theta \sin \phi \\
-    z &= r \cos \theta
+    z &= r \cos \theta \\
+    dx \, dy \, dz &= r^2 \sin \theta \, dr \, d\theta \, d\phi
 \end{align*}
-\[dx \, dy \, dz = r^2 \sin \theta \, dr \, d\theta \, d\phi\]
 
 \section{Summation identities}
-\subsection{Taylor series}
+The following Taylor series converges on $x \in (-1, 1)$.
 \[\sum_{n=0}^\infty x^n = \frac{1}{1-x} \]
 Differentiate that and multiply by $x$ to get this formula:
 \[\sum_{n=0}^\infty nx^n = \frac{x}{(1-x)^2} \]
 
-\subsection{Binomial coefficients}
+\section{Binomial coefficients}
 \[ \binom{n}{k} := \frac{n!}{k! (n-k)!} \]
 Pascal's identity:
 \[\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}\]
 Binomial theorem:
 \[(a+b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}\]
 
-
-\section{Electricity \& magnetism}
-
+\section{Energy-momentum equation}
+In general, I'll use $m$ to denote the rest mass, and $\gamma m$ to mean the relativistic mass.
 \[E^2 = m^2 c^4 + p^2 c^2\]
+In that equation, $E$ is the kinetic energy plus the rest energy. The momentum is $p = \gamma m v$, and the rest energy is $mc^2$, so the kinetic energy must be
+\begin{align*}
+    K &= E - mc^2 \\
+      &= \sqrt{m^2 c^4 + p^2 c^2} - mc^2 \\
+      &= \sqrt{m^2 c^4 + \frac{m^2 v^2 c^2}{1 - \frac{v^2}{c^2}}} - mc^2 \\
+      &= m c \sqrt{\frac{(c^2 - v^2) + v^2}{1 - \frac{v^2}{c^2}}} - mc^2 \\
+      &= m c^2 \left( \sqrt{\frac{1}{1 - \frac{v^2}{c^2}}} - 1 \right) \\
+      &= (\gamma - 1) m c^2
+\end{align*}
 
-\section{Notecard for midterms \& final}
-Also include Maxwell's equations, and any messy equations, such as the Maxwell-Boltzmann speed distribution and the blackbody radiation equation. Be sure to include numerical values (in various units) of Boltzmann's constant, Planck's constant, the speed of light, vacuum permittivity, vacuum permeability, and Avogadro's number. And of course, go back through old notes and include any other key concepts \& equations.
+\section{Maxwell's equations}
+Let $D := \varepsilon_0 E + P$ where $P$ is the polarization field, and let $H := \frac{B}{\mu_0} - M$ where $M$ is the magnetization field. Then the following version of Maxwell's equations work even if you aren't in a vacuum:
+\begin{align*}
+    \nabla \cdot D &= \rho \\
+    \nabla \cdot B &= 0 \\
+    \nabla \times E &= - \frac{\partial B}{\partial t} \\
+    \nabla \times H &= J + \frac{\partial D}{\partial t}
+\end{align*}
+
+\section{Constants}
+\begin{align*}
+    k_B &\approx 1.381 \times 10^{-23} \, \frac{\text{J}}{\text{K}} \approx 8.617 \times 10^{-5} \, \frac{\text{eV}}{\text{K}} \\
+    h &\approx 6.626 \times 10^{-34} \text{ J s} \approx 4.136 \times 10^{-15} \text{ eV s} \\
+\hbar := \frac{h}{2 \pi} &\approx 1.055 \times 10^{-34} \text{ J s} \approx 6.582 \times 10^{-16} \text{ eV s} \\
+    c &\approx 2.998 \times 10^8 \, \frac{\text{m}}{\text{s}^2} \\
+    k := \frac{1}{4 \pi \varepsilon_0} &\approx 8.988 \times 10^9 \, \frac{\text{N m}^2}{\text{C}^2} \\
+    \varepsilon_0 &\approx 8.854 \times 10^{-12} \, \frac{\text{F}}{\text{m}} \\
+    \mu_0 &\approx 1.257 \times 10^{-6} \, \frac{\text{N}}{\text{A}^2} \\
+    1 \text{ mol} &\approx 6.022 \times 10^{23} \text{ molecules} \\
+    \alpha := \frac{e^2}{2 \varepsilon_0 h c} &\approx 0.007297 \approx \frac{1}{137} \\
+    a_0 = \frac{\varepsilon_0 h^2}{\pi e^2 m_e} &\approx 5.292 \times 10^{-11} \text{ m} \\
+    G &\approx 6.674 \times 10^{-11} \, \frac{\text{N m}^2}{\text{kg}^2} \\
+    e &\approx 1.602 \times 10^{-19} \text{ C} \\
+    m_e &\approx 9.109 \times 10^{-31} \text{ kg} \\
+    m_p &\approx 1.673 \times 10^{-27} \text{ kg} \approx 1836 \, m_e
+\end{align*}
 
 \end{document}
