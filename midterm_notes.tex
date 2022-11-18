@@ -50,6 +50,7 @@ In that equation, $E$ is the kinetic energy plus the rest energy. The momentum i
       &= m c^2 \left( \sqrt{\frac{1}{1 - \frac{v^2}{c^2}}} - 1 \right) \\
       &= (\gamma - 1) m c^2
 \end{align*}
+This makes sense, because then the total energy is $E = \gamma m c^2$.
 
 \section{Maxwell's equations}
 Let $D := \varepsilon_0 E + P$ where $P$ is the polarization field, and let $H := \frac{B}{\mu_0} - M$ where $M$ is the magnetization field. Then the following version of Maxwell's equations work even if you aren't in a vacuum:
@@ -58,6 +59,37 @@ Let $D := \varepsilon_0 E + P$ where $P$ is the polarization field, and let $H :
     \nabla \cdot B &= 0 \\
     \nabla \times E &= - \frac{\partial B}{\partial t} \\
     \nabla \times H &= J + \frac{\partial D}{\partial t}
+\end{align*}
+If you're in a vacuum, you can use the identity $\nabla \times (\nabla \times E) = \nabla (\nabla \cdot E) - \nabla^2 E$ to derive the 3D wave equation for electromagnetic waves:
+\[ \nabla^2 E = \frac{1}{c^2} \cdot \frac{\partial^2 E}{\partial t^2} \]
+
+\section{Maxwell-Boltzmann speed distribution}
+\begin{align*}
+    \text{probability density} &= 4 \pi v^2 \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m v^2}{2 k_B T}} dv \\
+                               &= 4 \sqrt{E/\pi} \Big( \frac{1}{k_B T} \Big)^{3/2} e^{-E / k_B T} dE
+\end{align*}
+
+mean speed: $\sqrt{ \frac{8kT}{\pi m} }$
+
+RMS speed: $\sqrt{ \frac{3kT}{m} }$
+
+mode speed: $\sqrt{ \frac{2kT}{m} }$
+
+TODO: ADD MEAN, RMS, AND MODE ENERGIES TOO
+
+\section{Wien's law}
+\[ \lambda_\text{max} T(\lambda_\text{max}) = 2.898 \times 10^{-3} mK \]
+
+\section{Angular frequency version of Fourier transform}
+If $f$ is a function of $x$:
+\[ (\mathcal{F}f)(k) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty e^{-ikx}f(x) dx \]
+If $f$ is a function of $k$:
+\[ (\mathcal{F}^{-1}f)(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty e^{ikx}f(k) dk \]
+
+\section{Bohr model}
+\begin{align*}
+    r =& \frac{n^2 h^2 \varepsilon_0}{\pi m Z e^2} \approx& \frac{n^2}{Z}  (5.292\times 10^{-11} \text{ m}) \\
+    v =& \frac{Z e^2}{2 n \varepsilon_0 h} \approx& \frac{Z}{n} (2.188\times 10^{6} \text{ m/s})
 \end{align*}
 
 \section{Constants}
@@ -74,8 +106,22 @@ Let $D := \varepsilon_0 E + P$ where $P$ is the polarization field, and let $H :
     a_0 = \frac{\varepsilon_0 h^2}{\pi e^2 m_e} &\approx 5.292 \times 10^{-11} \text{ m} \\
     G &\approx 6.674 \times 10^{-11} \, \frac{\text{N m}^2}{\text{kg}^2} \\
     e &\approx 1.602 \times 10^{-19} \text{ C} \\
-    m_e &\approx 9.109 \times 10^{-31} \text{ kg} \\
-    m_p &\approx 1.673 \times 10^{-27} \text{ kg} \approx 1836 \, m_e
+    m_e &\approx 9.109 \times 10^{-31} \text{ kg} \approx 0.511 \text{ MeV/c}^2 \\
+    m_p &\approx 1.673 \times 10^{-27} \text{ kg} \approx 1836 \, m_e \approx 938.3 \text{ MeV/c}^2 \\
+    \sigma := \frac{2 \pi^5 k^4}{15 h^3 c^2} &\approx 5.670 \times 10^{-8} \, \frac{W}{m^2K^4} \\
+    R &\approx \frac{25}{3} \, \frac{J}{mol \cdot K} \\
 \end{align*}
+
+\section{Other random stuff}
+\begin{itemize}
+    \item Average energy at 0 Kelvin is 3/5 of the Fermi energy (prove by integrating over spherical shells in k-space)
+    \item Bragg scattering: $n \lambda = 2 d \sin \theta$
+    \item $p=\hbar k= h/\lambda_\text{de Broglie}$
+    \item $E = h f = \hbar \omega = \frac{h c}{\lambda} = \frac{\hbar c}{k}$
+    \item $\lambda k = 2 \pi$
+    \item If the work function $\phi$ is $e \cdot V_\text{stopping}$, then $KE_e = \frac{hc}{\lambda} - \phi$
+    \item $v_\text{phase} = c \sqrt{1 + \left( \frac{mc}{\hbar k}  \right)^2}$
+    \item $dN = (4 \pi k^2 dk) \left( \frac{L}{2 \pi} \right)^3 (\text{\# of polarization states})$
+\end{itemize}
 
 \end{document}
