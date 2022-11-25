@@ -12,16 +12,14 @@
 \maketitle
 
 \section{Density of states in $k$-space}
-For a standing harmonic wave in a one-dimensional container of length $L$, the wavenumber $k$ can be any integer multiple of $\pi/L$. Each harmonic wave that satisfies the boundary conditions represents one possible state, so in $k$-space, the density of possible states is $L/\pi$. Now if you consider standing waves in a 3-dimensional box with volume $V$, and let $k$ be the 3D wavevector, then the density of states in $k$-space is $V/\pi^3$.
+For a standing harmonic wave in a one-dimensional container of length $L$, the ends must be nodes, so the wavevector $k$ can be any integer multiple of $\pi/L$. Each harmonic wave that satisfies the boundary conditions represents one possible state, so in $k$-space, the density of possible states is $L/\pi$. However, a standing sinusoidal wave with wavevector $k$ is exactly the same as a standing wave with wavevector $-k$, so to avoid counting the same state twice, we assume $k$ is positive. Now if you consider standing waves in a 3-dimensional box with volume $V$, and let $k$ be the 3D wavevector, then the density of states in $k$-space is $V/\pi^3$. That only applies to the quandrant where all 3 components of $k$ are positive, since the density of states is zero elsewhere. To make the next step easier, we can pretend the density of states in $k$-space is $(L/2\pi)^3$ everywhere. Then if we instead use $k$ to mean the wavenumber instead of the wavevector, then we can integrate over cencentric spherical shells in $k$-space to find that the density of states is
+\[ dN = (4 \pi k^2 dk) \left( \frac{L}{2 \pi} \right)^3 = \frac{V k^2}{2 \pi^2} dk \]
 
-Standing waves have the boundary condition that they're equal to zero at the beginning and end of the box. But standing waves are boring, we want to model traveling waves! The whole ``particle in a box" model doesn't work too well anymore, so we replace the ``box" with a 3-torus ($T^3 \cong \mathbb{R}^3 / \mathbb{Z}^3 \cong S \times S \times S$). Or in one dimension, just use the topological equaivalent of a circle ($S = \mathbb{R} / \mathbb{Z}$), so the boundary condition is just that the values of the wave at either ``end" of the ``box" are the same. That means the possible values of $k$ in one dimension are any integer multiples of $2 \pi / L$, so the density of states is $L / 2 \pi$ and in 3D, the density of states is $V / 8 \pi^3$. But if we're considering light waves, there are two polarization states for each axis (this is sort of like the degeneracy of states), so the density of states for photons in a box is $V / 4 \pi^3$.
+But if we're these are light waves, there are two polarization states for each axis (this is sort of like the degeneracy of states), we double that to get
+\[ dN = \frac{V k^2}{\pi^2} dk \]
 
-The density states is then a constant function of $k$:
-\[N(k) = \frac{V}{4 \pi^3} dk_x dk_y dk_z\]
-We now want to know the density of states as a function of $k$, so we use the fun trick of converting to spherical coords and integrating over concentric spherical shells.
-\[N(|k|) = \oiint\limits_\text{constant $|k|$} N(k) = \frac{V}{4 \pi^3} (4 \pi k^2 d|k|) = \frac{V k^2}{\pi^2} d|k|\]
-Since we're considering photons, we can use the substitution $|k| = 2 \pi f / c$ where $f$ is (temporal) frequency. That also means that $d|k| = 2 \pi df / c$, so the density of states as a function of $f$ is
-\[N(f) = \frac{8 \pi V f^2}{c^3} df\]
+Since we're considering photons, we can use the substitution $k = 2 \pi f / c$ where $f$ is temporal frequency. That also means that $dk = 2 \pi df / c$, so the density of states as a function of $f$ is
+\[ dN = \frac{8 \pi V f^2}{c^3} df \]
 
 \section{Spectral energy density}
 The spectral energy density, $u(f, T)$ represents the energy per volume per frequency. That's equal to the energy per state, times the density of states, times the probability of being in each of those states, divided by the volume. Since the energy is $E = hf$, that works out to
