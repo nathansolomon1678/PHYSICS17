@@ -10,5 +10,8 @@ These notes are meant to be read in chronological order:
 * Week 5: [Blackbody Radiation](blackbody_radiation.pdf)
 * Week 6: [Bohr & Rutherford](bohr_and_rutherford.pdf)
 * Week 7: [Matter Waves](matter_waves.pdf)
-* Week 8: [Fourier Stuff](fourier_stuff.pdf) (Incomplete)
-* [Midterm & final notes sheet](midterm_notes.pdf)
+* Week 8: [Fourier Stuff](fourier_stuff.pdf)
+* Week 9: [Wave Function](wave_function.pdf)
+* Week 10: [Final Review](review.pdf)
+
+Also, here are all those notes in [one big document](physics17.pdf)

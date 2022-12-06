@@ -6,12 +6,26 @@
 
 \begin{document}
 
-\title{Midterm Notes}
+\title{Review}
 \author{Nathan Solomon}
 \maketitle
 
 \section{Notecard for midterms \& final}
 This document has all of the most important equations to include on your notecard EXCEPT for the stuff that was in notes from previous weeks (e.g. the Maxwell-Boltzmann speed distribution, the blackbody radiation equation, et cetera).
+
+\section{Virial Theorem}
+For a system in which the potential energy due to each pair of particles is proportional to $r^n$, where $r$ is the distance between the particles and $n$ is an integer, the total kinetic energy (averaged over a long time) of the system is $n/2$ times the potential energy (averaged over a long time) of the system. Notably, $n=2$ for a harmonic oscillator, and $n=-1$ for a gravitational system or a hydrogen atom.
+
+We can use this to find that for a giant cloud of $N$ gas particles dominated by gravitational force, the specific heat is
+\[ C = - \frac{3}{2} N k_B \]
+
+\section{Lorentz Invariants}
+Define the following 4-vectors (with the weird Minkowski metric, unless you prefer to multiply the first component of each by $i$):
+\begin{align*}
+    \boldsymbol{r} &= (ct, x, y, z) \\
+    \boldsymbol{k} &= (\omega/c, k_x, k_y, k_z)
+\end{align*}
+Then $s := |\boldsymbol{r}|$ and $\phi := \boldsymbol{k} \cdot \boldsymbol{r}$ and $|\boldsymbol{k}|$ are invariants.
 
 \section{Partition function $Z$}
 \[ Z := \sum_i g_i e^{-\beta E_i} = \int g e^{- \beta E} dE \]
@@ -66,16 +80,18 @@ If you're in a vacuum, you can use the identity $\nabla \times (\nabla \times E)
 \section{Maxwell-Boltzmann speed distribution}
 \begin{align*}
     \text{probability density} &= 4 \pi v^2 \Big( \frac{m}{2 \pi k_B T} \Big)^{3/2} e^{-\frac{m v^2}{2 k_B T}} dv \\
-                               &= 4 \sqrt{E/\pi} \Big( \frac{1}{k_B T} \Big)^{3/2} e^{-E / k_B T} dE
+                               &= 2 \sqrt{E/\pi} \Big( \frac{1}{k_B T} \Big)^{3/2} e^{-E / k_B T} dE
 \end{align*}
 
-mean speed: $\sqrt{ \frac{8kT}{\pi m} }$
-
-RMS speed: $\sqrt{ \frac{3kT}{m} }$
-
-mode speed: $\sqrt{ \frac{2kT}{m} }$
-
-TODO: ADD MEAN, RMS, AND MODE ENERGIES TOO
+\begin{tabular}{ c|c|c } 
+    & Speed & Energy \\
+    \hline
+    Mean & $\sqrt{ \frac{8kT}{\pi m} }$ & $ \frac{3}{2} kT$ \\ 
+    \hline
+    RMS & $\sqrt{ \frac{3kT}{m} }$ & $ \frac{\sqrt{15}}{2} kT$ \\ 
+    \hline
+    Mode & $\sqrt{ \frac{2kT}{m} }$ & $\frac{kT}{2}$ \\ 
+\end{tabular}
 
 \section{Wien's law}
 \[ \lambda_\text{max} T(\lambda_\text{max}) = 2.898 \times 10^{-3} mK \]
@@ -88,8 +104,9 @@ If $f$ is a function of $k$:
 
 \section{Bohr model}
 \begin{align*}
-    r =& \frac{n^2 h^2 \varepsilon_0}{\pi m Z e^2} \approx& \frac{n^2}{Z}  (5.292\times 10^{-11} \text{ m}) \\
-    v =& \frac{Z e^2}{2 n \varepsilon_0 h} \approx& \frac{Z}{n} (2.188\times 10^{6} \text{ m/s})
+    r &=& \frac{n^2 h^2 \varepsilon_0}{\pi m_e Z e^2} &\approx& \frac{n^2}{Z}  (5.292\times 10^{-11} \text{ m}) \\
+    v &=& \frac{Z e^2}{2 n \varepsilon_0 h} &\approx& \frac{Z}{n} (2.188\times 10^{6} \text{ m/s}) \\
+    E &=& - \frac{Z^2 m_e e^4}{8 \varepsilon_0^2 h^2 n^2} &\approx& \frac{Z^2}{n^2} (-13.6 \text{ eV}) 
 \end{align*}
 
 \section{Constants}
@@ -117,11 +134,14 @@ If $f$ is a function of $k$:
     \item Average energy at 0 Kelvin is 3/5 of the Fermi energy (prove by integrating over spherical shells in k-space)
     \item Bragg scattering: $n \lambda = 2 d \sin \theta$
     \item $p=\hbar k= h/\lambda_\text{de Broglie}$
-    \item $E = h f = \hbar \omega = \frac{h c}{\lambda} = \frac{\hbar c}{k}$
+    \item $E = h f = \hbar \omega = \frac{h c}{\lambda} = \hbar c k$
     \item $\lambda k = 2 \pi$
     \item If the work function $\phi$ is $e \cdot V_\text{stopping}$, then $KE_e = \frac{hc}{\lambda} - \phi$
     \item $v_\text{phase} = c \sqrt{1 + \left( \frac{mc}{\hbar k}  \right)^2}$
     \item $dN = (4 \pi k^2 dk) \left( \frac{L}{2 \pi} \right)^3 (\text{\# of polarization states})$
+    \item For a blackbody, a ``typical" photon has $\lambda = hc/5kT$
+    \item Schwarzschild radius: $r_s = 2GM/c^2$
+    \item $\lambda_{mfp} = 1/n \sigma$ where $\lambda_{mfp}$ is the mean free path, $n$ is the number of scatterers per volume, and $\sigma$ (the "cross-section") is the scattered flux divided by the incident area per flux
 \end{itemize}
 
 \end{document}

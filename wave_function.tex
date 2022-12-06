@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+
+\begin{document}
+
+\title{Wave Function}
+\author{Nathan Solomon}
+\maketitle
+
+\section{Time-Independent Schrödinger Equation}
+This only works for steady states, where the wave function does not change over time. In these cases, the total energy $E$ is the eigenvalue of the Hamiltonian operator, $H := i \hbar \frac{\partial}{\partial t}$, (on $\psi$).
+\[ - \frac{\hbar^2}{2m} \cdot \frac{d^2}{dx^2} \psi(x) + U(x) \cdot \psi(x) = E \cdot \psi(x) \]
+This works because we can define $k := -i \hbar \frac{d}{dx}$ as an operator, so the terms on the left hand side of that equation can be thought of as representing kinetic and potential energy, respectively.
+
+\section{Particle in a Box}
+A free particle is not bound, therefore not quantized. However, if a particle is trapped in a one dimensional box of length $L$, its wavefunction is
+\[ \psi(x) = \sqrt{ \frac{2}{L} } \cdot \sin \left( \frac{\pi n x}{L} \right) \]
+Since a free particle has energy $E = \hbar^2 k^2 / 2m$, and this bound particle has $k = \pi n / L$, its energy is
+\[ E = \frac{\hbar^2 \pi^2 n^2}{2 m L^2} \]
+
+\section{Harmonic Oscillator}
+Consider a mass on a spring, whose natural angular frequency is $\omega_0$. In the ground state ($n=0$), the wavefunction and the probability distribution are both perfect Gaussians.
+\[ \psi_0 = \left( \frac{\omega_0 m}{\pi \hbar} \right)^{1/4} e^{- \omega_0 m x^2 / (2 \hbar)} \]
+In general, the $n$th excited state for a quantum harmonic oscillator will have $n$ nodes, and a total energy of $E= \hbar \omega_0 (n + \frac{1}{2})$.
+
+Since energy is, on average, shared evenly between kinetic and potential, and since the average position and momentum of the oscillator are both zero, you can use the properties of variance to show that for a harmonic oscillator in the $n$th excited state,
+\[ \Delta x \Delta p = \hbar (n + \frac{1}{2}) \]
+Looking at it this way explains why zero-point energy has to be a thing -- if a quantum harmonic oscillator had any less energy than the zero-point energy, it would violate the Heisenberg uncertainty principle.
+
+\section{Useful Integral}
+Because we have to work with Gaussians so much now, it's good to know this formula (you can also halve it to get the integral from zero to $\infty$, instead of from $-\infty$ to $\infty$, since it's symmetric):
+\[ \int_{-\infty}^\infty x^2 e^{-ax^2} dx = \frac{1}{2a} \sqrt{ \frac{\pi}{a} } \]
+Of course, that is mean to work only when $a$ is positive.
+
+\section{Tunneling}
+If a stream of particles with kinetic energy $E$ has a wavefunction with amplitude $A$ and wavenumber $k$, and it is incident on a potential barrier of finite width (that is, potential energy is zero when $x<0$ and $U$ when $x>0$), and we define $\alpha = 1/\delta = \frac{1}{\hbar} \sqrt{2m(U-E)}$, where $\delta$ is the penetration depth, then we can figure out the reflection and transmission coefficients, $R$ and $T$, as well as the amplitude of the wavefunction of the transmitted wave, which we call $B$, using this formula:
+\[ R = 1 - T = \left| \frac{B}{A} \right|^2 = \left| - \frac{1 + ik / \alpha}{1 - ik / \alpha} \right|^2 \]
+Note that if $U<E$ then $\alpha$ will be imaginary instead of real, so there will be a transmitted wave, instead of decaying exponentiall when $x>0$.
+
+\end{document}

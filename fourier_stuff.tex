@@ -10,14 +10,34 @@
 \author{Nathan Solomon}
 \maketitle
 
+\section{Angular Frequency Fourier Transform}
+The formula you'll typically find online for the Fourier transform (and it's inverse) convert between time domain and frequency domain, but since we often want to think in terms of angular frequency instead of frequency, we use these definitions.
+\begin{align*}
+    (\mathcal{F} f)(k) &:= \frac{1}{\sqrt{2 \pi}} \int_{x \in \mathbb{R}} f(x) e^{-ikx} dx \\
+    (\mathcal{F}^{-1} g)(x) &:= \frac{1}{\sqrt{2 \pi}} \int_{k \in \mathbb{R}} g(k) e^{ikx} dk
+\end{align*}
+In my opinion, this is still is a strange way to write it -- if it were up to me, I'd replace the $1/\sqrt{2 \pi}$ in the first equation with $1/2 \pi$ and remove the $1/\sqrt{2 \pi}$ in the second equation. However, this is how the textbook and lecture notes chose to write them, and it's still valid, so we will use those definitions throughout the class.
+
+\section{Common Fourier Transforms}
+There are three conversions we need to know. (1) The Fourier transform turns a Gaussian function into another Gaussian, (2) it turns $\operatorname{rect}$ into $\operatorname{sinc}$ (and vice versa), which can be used to explain diffraction gratings, and (3) it turns a constant function into the Dirac $\delta$ ``function".
+
+\section{Properties of Fourier Transforms}
+If $f$ and $g$ are functions, define their convolution as
+\[ (f * g)(t) := \int_{-\infty}^\infty f(\tau)g(t-\tau)d\tau \]
+This has lots of cool properties, notably that $f * \delta = f$ if $f$ is a nice, smooth function. For Fourier transforms, we have the following properties:
+\begin{itemize}
+    \item $\mathcal{F}(f * g) = \sqrt{2 \pi} \cdot (\mathcal{F} f) \cdot (\mathcal{F} g)$ (the constant is only there cuz we're using a weird version of $\mathcal{F}$
+    \item $(\mathcal{F} f^{(n)}) (\omega) = (i \omega)^n (\mathcal{F} f)(\omega)$ where $f^{(n)}$ is the $n$th derivative of $f$.
+\end{itemize}
+It's also good to know what happens to the frequency domain of a signal when you shift or scale the time domain signal. And of course, it's good to know how to apply all those properties in reverse as well.
+
 \section{Uncertainty Principles}
-
-\section{Fraunhofer Diffraction}
-
-\section{Eigenfunctions of Fourier Transform}
-prove Gaussian minimizes the product of uncertainties in the time and frequency domains -- see recording from 11/14 lecture
-
-\section{Fourier Inversion Theorem}
-see last week's notes
+The fuzzier (wider) a signal is in the time domain, the sharper (skinnier) it will be in the frequency domain, and vice-versa. The product of those uncertainties is minimized when the signal is a Gaussian (idk how to prove that), in that case, we get the lower limit, $\Delta x \Delta k = \frac{1}{2}$. In general, we have the following relations:
+\begin{align*}
+    \Delta x \Delta k &\geq \frac{1}{2} \\
+    \Delta t \Delta \omega &\geq \frac{1}{2} \\
+    \Delta x \Delta p &\geq \frac{\hbar}{2} \\
+    \Delta t \Delta E &\geq \frac{\hbar}{2}
+\end{align*}
 
 \end{document}
